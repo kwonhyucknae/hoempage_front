@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import About from "./Components/About";
-import Portfolio from "./Components/Portfolio";
-import Resume from "./Components/Resume";
-import Testimonials from "./Components/Testimonials";
-import Contact from "./Components/Contact";
-import Footer from "./Components/Footer";
-import Header from "./Components/Header";
+import React from "react";
+import "./App.css";
+import "./styles/sb-admin-2.min.css";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+import Login from "./components/Account/Login";
+import Admin from "./components/Admin/Admin";
+import { PrivateRoute } from "./common/components/PrivateRoute";
+import { AccountRoute } from "./common/components/AccountRoute";
 
-function App() {
+const App: React.FC = () => {
   return (
-        <div className="App">
-          <Header/>
-          <About/>
-          <Resume/>
-          <Portfolio/>
-          <Testimonials/>
-          <Contact/>
-          <Footer/>
-        </div>
+    <div className="App" id="wrapper">
+      <Router>
+        <Switch>
+          <PrivateRoute path="/">
+            <Admin />
+          </PrivateRoute>
+          <AccountRoute path="/login"><Login /></AccountRoute>
+        </Switch>
+      </Router>
+    </div>
   );
-}
+};
 
 export default App;
